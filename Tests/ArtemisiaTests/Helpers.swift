@@ -17,15 +17,18 @@ extension XCTestCase{
         closure()
     }
 }
+
+//extension XCTestCase{
+//    func expectEqual<T>(_ val: T, description: String) -> ExpectEqual<T> {
+//        return ExpectEqual(val, description: description)
+//    }
+//}
 extension XCTestExpectation{
     @available(iOS 13.0, *)
-    func assertEqualOnce<T:Equatable>(val:T) -> AnySubscriber<T, Never> {
-        AnySubscriber(receiveSubscription:{
-            $0.request(.unlimited)
-        }, receiveValue: {
-            XCTAssertEqual(val, $0)
+    func fulfill<T:Equatable>(onEqual val:T) -> (T)->Void {
+        {
+            XCTAssertEqual($0, val)
             self.fulfill()
-            return .none
-        })
+        }
     }
 }

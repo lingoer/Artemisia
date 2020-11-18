@@ -13,12 +13,12 @@ final class MosquittoTests: XCTestCase {
         exp.expectedFulfillmentCount = 2
         let mosquitto = Mosquitto(host: "test.mosquitto.org")
 
-        mosquitto.callbacks.onConnect = { (rc, flags, props) in
-            if rc == 0 {
+        mosquitto.callbacks.onConnect = {
+            if $0.reasonCode == 0 {
                 exp.fulfill()
             }
         }
-        mosquitto.callbacks.onDisconnect = { (rc, props) in
+        mosquitto.callbacks.onDisconnect = {_ in
             XCTAssert(false, "This callback should not be called")
         }
         DispatchQueue.global().asyncAfter(deadline: .now() + .seconds(5)) {
@@ -34,8 +34,8 @@ final class MosquittoTests: XCTestCase {
         let message = "Test Message".data(using: .utf8)!
         let topic = topicHelper()
         mosquitto.connect()
-        mosquitto.callbacks.onMessage = { (msg, props) in
-            XCTAssertEqual(message, Data(bytes: msg.payload, count: Int(msg.payloadlen)))
+        mosquitto.callbacks.onMessage = {
+            XCTAssertEqual(message, $0.payload)
             expectation.fulfill()
         }
         mosquitto.subscribe(topic: topic)
@@ -50,8 +50,8 @@ final class MosquittoTests: XCTestCase {
         let topic = topicHelper()
         let message = "Test Message".data(using: .utf8)!
         mosquitto.connect()
-        mosquitto.callbacks.onMessage = { (msg, props) in
-            XCTAssertEqual(message, Data(bytes: msg.payload, count: Int(msg.payloadlen)))
+        mosquitto.callbacks.onMessage = {
+            XCTAssertEqual(message, $0.payload)
             expectation.fulfill()
         }
         mosquitto.subscribe(topic: topic + "/+", options: .qos(1))
@@ -59,40 +59,23 @@ final class MosquittoTests: XCTestCase {
         mosquitto.publish(message: .message(message, options: .topic(topic +  "/some_topic")))
         wait(for: [expectation], timeout: 20)
     }
-
-    func testWill() {
-        let expectWill = expectation(description: "Will should be published")
-        let expectConnected = expectation(description: "")
-        let topic = topicHelper()
+    
+    func testDisconnect() {
+        let expectDisconn = expectation(description: "Will should be published")
         let mos = Mosquitto(host: "test.mosquitto.org")
-        let message = "Test Message".data(using: .utf8)!
-        mos.callbacks.onConnect = {_, _, _ in
-            expectConnected.fulfill()
+        mos.callbacks.onDisconnect = {_ in
+            expectDisconn.fulfill()
+        }
+        mos.callbacks.onConnect = {_ in
+            mos.disconnect()
         }
         mos.connect()
-        mos.callbacks.onMessage = { (msg, props) in
-            XCTAssertEqual(message, Data(bytes: msg.payload, count: Int(msg.payloadlen)))
-            expectWill.fulfill()
-        }
-        mos.subscribe(topic: topic)
-        wait(for: [expectConnected], timeout: 10)
-        scoped {
-            let expectConnected = expectation(description: "deinit should be called")
-            let willMos = Mosquitto(host: "test.mosquitto.org")
-            willMos.callbacks.onConnect = { _, _, _ in
-                expectConnected.fulfill()
-            }
-            willMos.setWill(message, topic: topic)
-            willMos.connect()
-            wait(for: [expectConnected], timeout: 20)
-        }
-        wait(for: [expectWill], timeout: 20)
+        wait(for: [expectDisconn], timeout: 20)
     }
 
     static var allTests = [
         ("testConnect", testConnect),
         ("testPubSub", testPubSub),
         ("testIntersectedWildcardTopic", testIntersectedWildcardTopic),
-        ("testWill", testWill)
     ]
 }

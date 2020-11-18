@@ -6,43 +6,7 @@
 //
 
 import Foundation
-import Combine
 import MosquittoC
-
-public protocol TransmittableByMQTT {
-    func toMessage(options defaultOptions: Mosquitto.PublishOptions) -> Mosquitto.Message
-    static func fromMessage(message: Mosquitto.Message) -> Self
-}
-
-extension Mosquitto.Message: TransmittableByMQTT{
-    public func toMessage(options defaultOptions: Mosquitto.PublishOptions) -> Mosquitto.Message{
-        self
-    }
-    public static func fromMessage(message: Mosquitto.Message) -> Self{
-        message
-    }
-}
-
-extension Data: TransmittableByMQTT{
-    
-    public func toMessage(options defaultOptions: Mosquitto.PublishOptions) -> Mosquitto.Message{
-        .message(self, options: defaultOptions)
-    }
-    
-    public static func fromMessage(message: Mosquitto.Message) -> Self{
-        message.payload
-    }
-}
-
-extension String: TransmittableByMQTT{
-    public func toMessage(options defaultOptions: Mosquitto.PublishOptions) -> Mosquitto.Message{
-        .message(data(using: .utf8)!, options: defaultOptions)
-    }
-    
-    public static func fromMessage(message: Mosquitto.Message) -> Self{
-        String(data: message.payload, encoding: .utf8)!
-    }
-}
 
 public final class Mosquitto {
     
@@ -114,7 +78,6 @@ public final class Mosquitto {
         self.keepAlive = keepAlive
         self.tlsCert = tlsCert
         self._mosq = mosquitto_new(clientId, cleanSession, &callbacks)
-
     }
 
     private func setupMosquitto() {
@@ -145,61 +108,64 @@ public final class Mosquitto {
             mosquitto_tls_insecure_set(_mosq, tlsInsecure)
             mosquitto_tls_opts_set(_mosq, tlsCertRequired ? 1 : 0, tlsVersion.rawValue, tlsCiphers)
         }
+        mosquitto_username_pw_set(_mosq, username, password)
         mosquitto_loop_start(_mosq)
     }
 
-    var callbacks = CallbackWrapper()
-    var isInitialState: Bool {
-        _mosq.pointee.state == mosq_cs_new
-    }
+    public private(set) var callbacks = CallbackWrapper()
+
     public var connected: Bool{
         callbacks.connected
     }
     
-    class CallbackWrapper: NSObject {
-        var connected: Bool = false
-        
-        var onDisconnect: ((_ rc: Int32, _ props: UnsafePointer<mosquitto_property>?) -> Void)?
-        var onConnect:((_ rc: Int32, _ flag: Int32, _ props: UnsafePointer<mosquitto_property>?) -> Void)?
-        var onPublish:((_ rc: Int32, _ mid: Int32, _ props: UnsafePointer<mosquitto_property>?) -> Void)?
-        var onSubscribe:((_ mid: Int32, _ grantedQos: [Int32], _ props: UnsafePointer<mosquitto_property>?) -> Void)?
-        var onUnsubscribe:((_ mid: Int32, _ props: UnsafePointer<mosquitto_property>?) -> Void)?
-        var onMessage:((_ message: mosquitto_message, _ props: UnsafePointer<mosquitto_property>?) -> Void)?
+    public class CallbackWrapper: NSObject {
+        public internal(set) var connected: Bool = false
+        public var onDisconnect: ((MQTTDisconnect) -> Void)?
+        public var onConnect:((MQTTConnact) -> Void)?
+        public var onPublish:((MQTTPublish) -> Void)?
+        public var onSubscribe:((MQTTSubscribe) -> Void)?
+        public var onUnsubscribe:((MQTTUnsubscribe) -> Void)?
+        public var onMessage:((Message) -> Void)?
     }
 
     private func setupCallbacks() {
         mosquitto_disconnect_v5_callback_set(_mosq) { (_, pointer, rc, props) in
             if let callbacks = pointer?.assumingMemoryBound(to: CallbackWrapper.self).pointee{
                 callbacks.connected = false
-                callbacks.onDisconnect?(rc, props)
+                callbacks.onDisconnect?(.init(props: UnsafeMutablePointer(mutating: props), reasonCode: rc))
             }
         }
         mosquitto_connect_v5_callback_set(_mosq) { (_, pointer, rc, flag, props) in
             if let callbacks = pointer?.assumingMemoryBound(to: CallbackWrapper.self).pointee{
                 callbacks.connected = true
-                callbacks.onConnect?(rc, flag, props)
+                callbacks.onConnect?(.init(props: UnsafeMutablePointer(mutating: props), reasonCode: rc, flag: flag))
             }
         }
         mosquitto_publish_v5_callback_set(_mosq) { (_, pointer, mid, rc, props) in
             if let callbacks = pointer?.assumingMemoryBound(to: CallbackWrapper.self).pointee{
-                callbacks.onPublish?(rc, mid, props)
+                callbacks.onPublish?(.init(props: UnsafeMutablePointer(mutating: props), messageId: mid, reasonCode: rc))
             }
         }
         mosquitto_subscribe_v5_callback_set(_mosq) { (_, pointer, mid, qosCount, grantedQos, props) in
             if let callbacks = pointer?.assumingMemoryBound(to: CallbackWrapper.self).pointee {
                 let allQos = Array(UnsafeBufferPointer(start: grantedQos, count: Int(qosCount)))
-                callbacks.onSubscribe?(mid, allQos, props)
+                callbacks.onSubscribe?(.init(props: UnsafeMutablePointer(mutating: props), messageId: mid, allQos: allQos))
             }
         }
         mosquitto_unsubscribe_v5_callback_set(_mosq) { (_, pointer, mid, props) in
             if let callbacks = pointer?.assumingMemoryBound(to: CallbackWrapper.self).pointee {
-                callbacks.onUnsubscribe?(mid, props)
+                callbacks.onUnsubscribe?(.init(props: UnsafeMutablePointer(mutating: props), messageId: mid))
             }
         }
         mosquitto_message_v5_callback_set(_mosq) { (_, pointer, msgP, props) in
             if let callbacks = pointer?.assumingMemoryBound(to: CallbackWrapper.self).pointee,
-               let msg = msgP?.pointee {
-                callbacks.onMessage?(msg, props)
+                let msg = msgP?.pointee {
+                callbacks.onMessage?(.init(payload: Data(bytes: msg.payload, count: Int(msg.payloadlen)),
+                                           topic: String(cString: msg.topic),
+                                           qos: msg.qos,
+                                           retain: msg.retain,
+                                           props: UnsafeMutablePointer(mutating: props),
+                                           messageId: msg.mid))
             }
         }
     }
@@ -226,33 +192,6 @@ public final class Mosquitto {
         }
     }
 
-    
-    public struct Message: WithPayloadFormatIndicator, WithMessageExpiryInterval, WithContentType, WithResponseTopic, WithCorrelationData,
-                           WithSubscriptionIdentifier, WithTopicAlias, WithUserProperty {
-        public var payload: Data
-        public var topic: String?
-        public var qos: Int32
-        public var retain: Bool
-        public var props: UnsafeMutablePointer<mosquitto_property>?
-        public var messageId: Int32
-
-        init(payload: Data, topic: String? = nil, qos: Int32 = 0, retain: Bool = false,
-             props: UnsafeMutablePointer<mosquitto_property>? = nil, messageId: Int32 = 0) {
-            self.payload = payload
-            self.topic = topic
-            self.qos = qos
-            self.retain = retain
-            self.props = props
-            self.messageId = messageId
-        }
-        
-        public static func message(_ payload: Data, options: PublishOptions = []) -> Message {
-            var props: UnsafeMutablePointer<mosquitto_property>?
-            options.buildProps(&props)
-            return Message(payload: payload, topic: options.topic, qos: options.qos ?? 0, retain: options.retain ?? false, props: props)
-        }
-    }
-    
     public func setWill(_ payload: Data, topic: String?, qos: Int32 = 0,
                         retain: Bool = false, properties: WILLProperties = []){
         queue.async {[self] in
@@ -326,7 +265,101 @@ public extension Mosquitto{
         case tlsv1_1    = "tlsv1.1"
         case tlsv1_2    = "tlsv1.2"
     }
+    
+    struct Message: WithPayloadFormatIndicator, WithMessageExpiryInterval, WithContentType, WithResponseTopic, WithCorrelationData,
+                           WithSubscriptionIdentifier, WithTopicAlias, WithUserProperty {
+        public var payload: Data
+        public var topic: String?
+        public var qos: Int32
+        public var retain: Bool
+        public var props: UnsafeMutablePointer<mosquitto_property>?
+        public var messageId: Int32
+
+        init(payload: Data, topic: String? = nil, qos: Int32 = 0, retain: Bool = false,
+             props: UnsafeMutablePointer<mosquitto_property>? = nil, messageId: Int32 = 0) {
+            self.payload = payload
+            self.topic = topic
+            self.qos = qos
+            self.retain = retain
+            self.props = props
+            self.messageId = messageId
+        }
+        public static func message(_ payload: Data, options: PublishOptions = []) -> Message {
+            var props: UnsafeMutablePointer<mosquitto_property>?
+            options.buildProps(&props)
+            return Message(payload: payload, topic: options.topic, qos: options.qos ?? 0, retain: options.retain ?? false, props: props)
+        }
+    }
+    
+    struct MQTTUnsubscribe: WithUserProperty, WithReasonString {
+        public var props: UnsafeMutablePointer<mosquitto_property>?
+        public var messageId: Int32
+    }
+
+    struct MQTTSubscribe: WithUserProperty, WithReasonString {
+        public var props: UnsafeMutablePointer<mosquitto_property>?
+        public var messageId: Int32
+        public var allQos: [Int32]
+
+    }
+
+    struct MQTTPublish: WithUserProperty, WithReasonString{
+        public var props: UnsafeMutablePointer<mosquitto_property>?
+        public var messageId: Int32
+        public var reasonCode: Int32
+    }
+
+    struct MQTTDisconnect: WithSessionExpiryInterval, WithServerReference, WithReasonString, WithUserProperty {
+        public var props: UnsafeMutablePointer<mosquitto_property>?
+        public var reasonCode: Int32
+    }
+
+    // these should be CONNACK?
+    struct MQTTConnact: WithSessionExpiryInterval,WithAssignedClientIdentifier,WithServerKeepAlive,WithAuthenticationData,WithAuthenticationMethod,
+                           WithResponseInformation,WithServerReference,WithReasonString,WithReceiveMaximum,WithTopicAliasMaximum,
+                           WithRetainAvailable,WithUserProperty,WithMaximumPacketSize,WithSubscriptionIdAvailable,WithSharedSubAvailable{
+        public var props: UnsafeMutablePointer<mosquitto_property>?
+        public var reasonCode: Int32
+        public var flag: Int32
+    }
+
 }
+
+public protocol MQTTTransmittable {
+    func toMessage(options defaultOptions: Mosquitto.PublishOptions) -> Mosquitto.Message
+    static func fromMessage(message: Mosquitto.Message) -> Self
+}
+
+extension Mosquitto.Message: MQTTTransmittable{
+    public func toMessage(options defaultOptions: Mosquitto.PublishOptions) -> Mosquitto.Message{
+        self
+    }
+    public static func fromMessage(message: Mosquitto.Message) -> Self{
+        message
+    }
+}
+
+extension Data: MQTTTransmittable{
+    
+    public func toMessage(options defaultOptions: Mosquitto.PublishOptions) -> Mosquitto.Message{
+        .message(self, options: defaultOptions)
+    }
+    
+    public static func fromMessage(message: Mosquitto.Message) -> Self{
+        message.payload
+    }
+}
+
+extension String: MQTTTransmittable{
+    public func toMessage(options defaultOptions: Mosquitto.PublishOptions) -> Mosquitto.Message{
+        .message(data(using: .utf8)!, options: defaultOptions)
+    }
+    
+    public static func fromMessage(message: Mosquitto.Message) -> Self{
+        String(data: message.payload, encoding: .utf8)!
+    }
+}
+
 
 private extension Optional{
     func withValue(_ f: ((Wrapped) -> Void)) {

@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Artemisia",
+        "repositoryURL": "https://github.com/lingoer/Artemisia.git",
+        "state": {
+          "branch": "main",
+          "revision": "0deb08f682353608b44948955d9bf29488a0694e",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}

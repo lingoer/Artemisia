@@ -102,7 +102,7 @@ public extension Mosquitto{
                         subscriptionIdentifier: UInt32? = nil, topicAlias: UInt16? = nil, userProperties: [(String, String)]? = nil,
                         getMessageId:((Int32)->Void)? = nil) {
         queue.async {[self] in
-            var d = payload, mid: Int32 = 0, props: UnsafeMutablePointer<mosquitto_property>? = nil
+            var mid: Int32 = 0, props: UnsafeMutablePointer<mosquitto_property>? = nil
             if protocolVersion == .v5{
                 MQTT_PROP_PAYLOAD_FORMAT_INDICATOR.tryAdd(value: payloadFormatIndicator, to: &props)
                 MQTT_PROP_MESSAGE_EXPIRY_INTERVAL.tryAdd(value: messageExpiryInterval, to: &props)
@@ -115,7 +115,9 @@ public extension Mosquitto{
                     MQTT_PROP_USER_PROPERTY.tryAdd(value: prop, to: &props)
                 })
             }
-            mosquitto_publish_v5(_mosq, &mid, topic, Int32(d.count), &d, qos, retain, props)
+            _ = payload.withUnsafeBytes {
+                mosquitto_publish_v5(_mosq, &mid, topic, Int32($0.count), $0.baseAddress, qos, retain, props)
+            }
             getMessageId?(mid)
         }
     }

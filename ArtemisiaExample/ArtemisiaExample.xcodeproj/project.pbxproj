@@ -1,0 +1,746 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		174F3F7825651D8600237152 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174F3F7725651D8600237152 /* Tests_iOS.swift */; };
+		174F3F8325651D8600237152 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174F3F8225651D8600237152 /* Tests_macOS.swift */; };
+		174F3F8525651D8600237152 /* ArtemisiaExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174F3F5C25651D8500237152 /* ArtemisiaExampleApp.swift */; };
+		174F3F8625651D8600237152 /* ArtemisiaExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174F3F5C25651D8500237152 /* ArtemisiaExampleApp.swift */; };
+		174F3F8725651D8600237152 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174F3F5D25651D8500237152 /* ContentView.swift */; };
+		174F3F8825651D8600237152 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174F3F5D25651D8500237152 /* ContentView.swift */; };
+		174F3F8925651D8600237152 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 174F3F5E25651D8600237152 /* Assets.xcassets */; };
+		174F3F8A25651D8600237152 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 174F3F5E25651D8600237152 /* Assets.xcassets */; };
+		174F3FA6256525F500237152 /* Artemisia in Frameworks */ = {isa = PBXBuildFile; productRef = 174F3FA5256525F500237152 /* Artemisia */; };
+		174F3FAD2565261700237152 /* Artemisia in Frameworks */ = {isa = PBXBuildFile; productRef = 174F3FAC2565261700237152 /* Artemisia */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		174F3F7425651D8600237152 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 174F3F5725651D8500237152 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 174F3F6225651D8600237152;
+			remoteInfo = "ArtemisiaExample (iOS)";
+		};
+		174F3F7F25651D8600237152 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 174F3F5725651D8500237152 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 174F3F6A25651D8600237152;
+			remoteInfo = "ArtemisiaExample (macOS)";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		174F3F5C25651D8500237152 /* ArtemisiaExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtemisiaExampleApp.swift; sourceTree = "<group>"; };
+		174F3F5D25651D8500237152 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		174F3F5E25651D8600237152 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		174F3F6325651D8600237152 /* ArtemisiaExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArtemisiaExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		174F3F6625651D8600237152 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		174F3F6B25651D8600237152 /* ArtemisiaExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArtemisiaExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		174F3F6D25651D8600237152 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		174F3F6E25651D8600237152 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		174F3F7325651D8600237152 /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		174F3F7725651D8600237152 /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
+		174F3F7925651D8600237152 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		174F3F7E25651D8600237152 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		174F3F8225651D8600237152 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
+		174F3F8425651D8600237152 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		174F3F6025651D8600237152 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				174F3FA6256525F500237152 /* Artemisia in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		174F3F6825651D8600237152 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				174F3FAD2565261700237152 /* Artemisia in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		174F3F7025651D8600237152 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		174F3F7B25651D8600237152 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		174F3F5625651D8500237152 = {
+			isa = PBXGroup;
+			children = (
+				174F3F5B25651D8500237152 /* Shared */,
+				174F3F6525651D8600237152 /* iOS */,
+				174F3F6C25651D8600237152 /* macOS */,
+				174F3F7625651D8600237152 /* Tests iOS */,
+				174F3F8125651D8600237152 /* Tests macOS */,
+				174F3F6425651D8600237152 /* Products */,
+				174F3FAB2565261700237152 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		174F3F5B25651D8500237152 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				174F3F5C25651D8500237152 /* ArtemisiaExampleApp.swift */,
+				174F3F5D25651D8500237152 /* ContentView.swift */,
+				174F3F5E25651D8600237152 /* Assets.xcassets */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		174F3F6425651D8600237152 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				174F3F6325651D8600237152 /* ArtemisiaExample.app */,
+				174F3F6B25651D8600237152 /* ArtemisiaExample.app */,
+				174F3F7325651D8600237152 /* Tests iOS.xctest */,
+				174F3F7E25651D8600237152 /* Tests macOS.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		174F3F6525651D8600237152 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				174F3F6625651D8600237152 /* Info.plist */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		174F3F6C25651D8600237152 /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+				174F3F6D25651D8600237152 /* Info.plist */,
+				174F3F6E25651D8600237152 /* macOS.entitlements */,
+			);
+			path = macOS;
+			sourceTree = "<group>";
+		};
+		174F3F7625651D8600237152 /* Tests iOS */ = {
+			isa = PBXGroup;
+			children = (
+				174F3F7725651D8600237152 /* Tests_iOS.swift */,
+				174F3F7925651D8600237152 /* Info.plist */,
+			);
+			path = "Tests iOS";
+			sourceTree = "<group>";
+		};
+		174F3F8125651D8600237152 /* Tests macOS */ = {
+			isa = PBXGroup;
+			children = (
+				174F3F8225651D8600237152 /* Tests_macOS.swift */,
+				174F3F8425651D8600237152 /* Info.plist */,
+			);
+			path = "Tests macOS";
+			sourceTree = "<group>";
+		};
+		174F3FAB2565261700237152 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		174F3F6225651D8600237152 /* ArtemisiaExample (iOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 174F3F8D25651D8600237152 /* Build configuration list for PBXNativeTarget "ArtemisiaExample (iOS)" */;
+			buildPhases = (
+				174F3F5F25651D8600237152 /* Sources */,
+				174F3F6025651D8600237152 /* Frameworks */,
+				174F3F6125651D8600237152 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ArtemisiaExample (iOS)";
+			packageProductDependencies = (
+				174F3FA5256525F500237152 /* Artemisia */,
+			);
+			productName = "ArtemisiaExample (iOS)";
+			productReference = 174F3F6325651D8600237152 /* ArtemisiaExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+		174F3F6A25651D8600237152 /* ArtemisiaExample (macOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 174F3F9025651D8600237152 /* Build configuration list for PBXNativeTarget "ArtemisiaExample (macOS)" */;
+			buildPhases = (
+				174F3F6725651D8600237152 /* Sources */,
+				174F3F6825651D8600237152 /* Frameworks */,
+				174F3F6925651D8600237152 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ArtemisiaExample (macOS)";
+			packageProductDependencies = (
+				174F3FAC2565261700237152 /* Artemisia */,
+			);
+			productName = "ArtemisiaExample (macOS)";
+			productReference = 174F3F6B25651D8600237152 /* ArtemisiaExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+		174F3F7225651D8600237152 /* Tests iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 174F3F9325651D8600237152 /* Build configuration list for PBXNativeTarget "Tests iOS" */;
+			buildPhases = (
+				174F3F6F25651D8600237152 /* Sources */,
+				174F3F7025651D8600237152 /* Frameworks */,
+				174F3F7125651D8600237152 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				174F3F7525651D8600237152 /* PBXTargetDependency */,
+			);
+			name = "Tests iOS";
+			productName = "Tests iOS";
+			productReference = 174F3F7325651D8600237152 /* Tests iOS.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		174F3F7D25651D8600237152 /* Tests macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 174F3F9625651D8600237152 /* Build configuration list for PBXNativeTarget "Tests macOS" */;
+			buildPhases = (
+				174F3F7A25651D8600237152 /* Sources */,
+				174F3F7B25651D8600237152 /* Frameworks */,
+				174F3F7C25651D8600237152 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				174F3F8025651D8600237152 /* PBXTargetDependency */,
+			);
+			name = "Tests macOS";
+			productName = "Tests macOS";
+			productReference = 174F3F7E25651D8600237152 /* Tests macOS.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		174F3F5725651D8500237152 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1220;
+				LastUpgradeCheck = 1220;
+				TargetAttributes = {
+					174F3F6225651D8600237152 = {
+						CreatedOnToolsVersion = 12.2;
+					};
+					174F3F6A25651D8600237152 = {
+						CreatedOnToolsVersion = 12.2;
+					};
+					174F3F7225651D8600237152 = {
+						CreatedOnToolsVersion = 12.2;
+						TestTargetID = 174F3F6225651D8600237152;
+					};
+					174F3F7D25651D8600237152 = {
+						CreatedOnToolsVersion = 12.2;
+						TestTargetID = 174F3F6A25651D8600237152;
+					};
+				};
+			};
+			buildConfigurationList = 174F3F5A25651D8500237152 /* Build configuration list for PBXProject "ArtemisiaExample" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 174F3F5625651D8500237152;
+			packageReferences = (
+				174F3FA4256525F500237152 /* XCRemoteSwiftPackageReference "Artemisia" */,
+			);
+			productRefGroup = 174F3F6425651D8600237152 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				174F3F6225651D8600237152 /* ArtemisiaExample (iOS) */,
+				174F3F6A25651D8600237152 /* ArtemisiaExample (macOS) */,
+				174F3F7225651D8600237152 /* Tests iOS */,
+				174F3F7D25651D8600237152 /* Tests macOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		174F3F6125651D8600237152 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				174F3F8925651D8600237152 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		174F3F6925651D8600237152 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				174F3F8A25651D8600237152 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		174F3F7125651D8600237152 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		174F3F7C25651D8600237152 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		174F3F5F25651D8600237152 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				174F3F8725651D8600237152 /* ContentView.swift in Sources */,
+				174F3F8525651D8600237152 /* ArtemisiaExampleApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		174F3F6725651D8600237152 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				174F3F8825651D8600237152 /* ContentView.swift in Sources */,
+				174F3F8625651D8600237152 /* ArtemisiaExampleApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		174F3F6F25651D8600237152 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				174F3F7825651D8600237152 /* Tests_iOS.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		174F3F7A25651D8600237152 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				174F3F8325651D8600237152 /* Tests_macOS.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		174F3F7525651D8600237152 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 174F3F6225651D8600237152 /* ArtemisiaExample (iOS) */;
+			targetProxy = 174F3F7425651D8600237152 /* PBXContainerItemProxy */;
+		};
+		174F3F8025651D8600237152 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 174F3F6A25651D8600237152 /* ArtemisiaExample (macOS) */;
+			targetProxy = 174F3F7F25651D8600237152 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		174F3F8B25651D8600237152 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		174F3F8C25651D8600237152 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		174F3F8E25651D8600237152 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RH547UXARG;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.aemaeth.ArtemisiaExample;
+				PRODUCT_NAME = ArtemisiaExample;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		174F3F8F25651D8600237152 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RH547UXARG;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.aemaeth.ArtemisiaExample;
+				PRODUCT_NAME = ArtemisiaExample;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		174F3F9125651D8600237152 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = RH547UXARG;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = macOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aemaeth.ArtemisiaExample;
+				PRODUCT_NAME = ArtemisiaExample;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		174F3F9225651D8600237152 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = RH547UXARG;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = macOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aemaeth.ArtemisiaExample;
+				PRODUCT_NAME = ArtemisiaExample;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		174F3F9425651D8600237152 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RH547UXARG;
+				INFOPLIST_FILE = "Tests iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.aemaeth.Tests-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "ArtemisiaExample (iOS)";
+			};
+			name = Debug;
+		};
+		174F3F9525651D8600237152 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RH547UXARG;
+				INFOPLIST_FILE = "Tests iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.aemaeth.Tests-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "ArtemisiaExample (iOS)";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		174F3F9725651D8600237152 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = RH547UXARG;
+				INFOPLIST_FILE = "Tests macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.aemaeth.Tests-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "ArtemisiaExample (macOS)";
+			};
+			name = Debug;
+		};
+		174F3F9825651D8600237152 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = RH547UXARG;
+				INFOPLIST_FILE = "Tests macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.aemaeth.Tests-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "ArtemisiaExample (macOS)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		174F3F5A25651D8500237152 /* Build configuration list for PBXProject "ArtemisiaExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				174F3F8B25651D8600237152 /* Debug */,
+				174F3F8C25651D8600237152 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		174F3F8D25651D8600237152 /* Build configuration list for PBXNativeTarget "ArtemisiaExample (iOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				174F3F8E25651D8600237152 /* Debug */,
+				174F3F8F25651D8600237152 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		174F3F9025651D8600237152 /* Build configuration list for PBXNativeTarget "ArtemisiaExample (macOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				174F3F9125651D8600237152 /* Debug */,
+				174F3F9225651D8600237152 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		174F3F9325651D8600237152 /* Build configuration list for PBXNativeTarget "Tests iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				174F3F9425651D8600237152 /* Debug */,
+				174F3F9525651D8600237152 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		174F3F9625651D8600237152 /* Build configuration list for PBXNativeTarget "Tests macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				174F3F9725651D8600237152 /* Debug */,
+				174F3F9825651D8600237152 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		174F3FA4256525F500237152 /* XCRemoteSwiftPackageReference "Artemisia" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lingoer/Artemisia.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		174F3FA5256525F500237152 /* Artemisia */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 174F3FA4256525F500237152 /* XCRemoteSwiftPackageReference "Artemisia" */;
+			productName = Artemisia;
+		};
+		174F3FAC2565261700237152 /* Artemisia */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 174F3FA4256525F500237152 /* XCRemoteSwiftPackageReference "Artemisia" */;
+			productName = Artemisia;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 174F3F5725651D8500237152 /* Project object */;
+}

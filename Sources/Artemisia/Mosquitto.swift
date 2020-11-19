@@ -195,11 +195,13 @@ public final class Mosquitto {
     public func setWill(_ payload: Data, topic: String?, qos: Int32 = 0,
                         retain: Bool = false, properties: WILLProperties = []){
         queue.async {[self] in
-            var d = payload, props: UnsafeMutablePointer<mosquitto_property>? = nil
+            var props: UnsafeMutablePointer<mosquitto_property>? = nil
             if protocolVersion == .v5{
                 properties.build(&props)
             }
-            mosquitto_will_set_v5(_mosq, topic, Int32(d.count), &d, qos, retain, props)
+            _ = payload.withUnsafeBytes {
+                mosquitto_will_set_v5(_mosq, topic, Int32($0.count), $0.baseAddress, qos, retain, props)
+            }
         }
     }
     

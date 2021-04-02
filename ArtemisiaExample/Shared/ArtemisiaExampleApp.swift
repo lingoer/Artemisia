@@ -9,9 +9,10 @@ import SwiftUI
 
 @main
 struct ArtemisiaExampleApp: App {
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
+  var body: some Scene {
+    WindowGroup {
+      ContentView()
     }
+  }
 }
+

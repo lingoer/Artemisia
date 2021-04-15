@@ -31,7 +31,7 @@ mosquitto.subscribe(topic: "awesome/+/topic", options: .qos(1))
 mosquitto.publish(message: .message(data, options: [.topic("awesome/+/topic", .qos(1)])))
 
 ```
-
+A demo project is inside ArtemisiaExample directory to show the basic usage.
 #### TODOs:
 * Documentation
 * RxSwift supports
